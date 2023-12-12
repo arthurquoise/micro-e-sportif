@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["MicroESport.Equipe/MicroESport.Equipe.csproj", "MicroESport.Equipe/"]
-RUN dotnet restore "MicroESport.Equipe/MicroESport.Equipe.csproj"
+COPY ["MicroESport.Equipe.csproj", ""]
+RUN dotnet restore "MicroESport.Equipe.csproj"
 COPY . .
-WORKDIR "/src/MicroESport.Equipe"
+# WORKDIR "/src/MicroESport.Equipe"
 RUN dotnet build "MicroESport.Equipe.csproj" -c Release -o /app/build
 
 FROM build AS publish
