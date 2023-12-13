@@ -1,38 +1,65 @@
 ﻿using System.Linq.Expressions;
 using MicroESport.Joueurs.Domain.Interfaces;
+using MicroESport.Joueurs.Domain.Models;
+using MongoDB.Driver;
+using SharpCompress.Common;
 
 namespace MicroESport.Joueurs.Infrastructure.Repositories
 {
     public class JoueurMongoRepository : IJoueurRepository
     {
-        public Task<bool> Delete(Domain.Models.Joueur joueur)
+        private readonly IMongoCollection<Joueur> _collection;
+        private readonly IMongoDatabase _database;
+
+        public JoueurMongoRepository(IMongoDatabase database, string mongoCollectionName)
         {
-            throw new NotImplementedException();
+            _database = database;
+            _collection = _database.GetCollection<Joueur>(mongoCollectionName);
         }
 
-        public Task<IEnumerable<Domain.Models.Joueur>> FindAll()
+        public async Task<IEnumerable<Joueur>> FindAll()
         {
-            throw new NotImplementedException();
+            return await _collection.Find(e => true).ToListAsync();
         }
 
-        public Task<Domain.Models.Joueur?> FindById(string id)
+        public async Task<Joueur?> FindById(string id)
         {
-            throw new NotImplementedException();
+            return await _collection.Find(e => e.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<Domain.Models.Joueur>> FindBySpecification(Expression<Func<Domain.Models.Joueur, bool>> callback)
+        public async Task<IEnumerable<Joueur>> FindBySpecification(Func<Joueur, bool> predicate)
         {
-            throw new NotImplementedException();
+            return await _collection.Find(e => predicate(e)).ToListAsync();
         }
 
-        public Task<Domain.Models.Joueur> Save(Domain.Models.Joueur joueur)
+        public async Task<Joueur> Save(Joueur joueur)
         {
-            throw new NotImplementedException();
+            await _collection.InsertOneAsync(joueur);
+            return joueur;
         }
 
-        public Task<Domain.Models.Joueur> Update(Domain.Models.Joueur joueur)
+        public async Task<Joueur> Update(Joueur joueur)
         {
-            throw new NotImplementedException();
+            var entityFromDb = await _collection.Find(e => e.Id == joueur.Id).FirstOrDefaultAsync();
+            if (entityFromDb == null)
+                throw new Exception("Entity not found");
+
+            var result = await _collection.ReplaceOneAsync(x => x.Id == joueur.Id, joueur);
+            if (result.ModifiedCount != 1)
+                throw new Exception("Entity not updated");
+
+            return joueur;
+        }
+
+        public async Task<bool> Delete(Joueur joueur)
+        {
+            var entityFromDb = await _collection.Find(e => e.Id == joueur.Id).FirstOrDefaultAsync();
+            if (entityFromDb == null)
+                throw new Exception("Entity not found");
+
+            var result = await _collection.DeleteOneAsync(e => e.Id == joueur.Id);
+
+            return result.DeletedCount == 1;
         }
     }
 }
