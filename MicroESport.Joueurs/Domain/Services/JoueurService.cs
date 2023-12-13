@@ -1,6 +1,6 @@
-﻿using MicroESport.Joueur.Domain.Interfaces;
+﻿using MicroESport.Joueurs.Domain.Interfaces;
 
-namespace MicroESport.Joueur.Domain.Services
+namespace MicroESport.Joueurs.Domain.Services
 {
     public class JoueurService
     {

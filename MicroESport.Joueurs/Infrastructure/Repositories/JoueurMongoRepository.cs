@@ -1,7 +1,7 @@
-﻿using MicroESport.Joueur.Domain.Interfaces;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
+using MicroESport.Joueurs.Domain.Interfaces;
 
-namespace MicroESport.Joueur.Infrastructure.Repositories
+namespace MicroESport.Joueurs.Infrastructure.Repositories
 {
     public class JoueurMongoRepository : IJoueurRepository
     {

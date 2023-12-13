@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroESport.Joueur", "MicroESport.Joueur\MicroESport.Joueur.csproj", "{9E5EF96D-B481-4F7E-93DC-F03555F45BBA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroESport.Joueurs", "MicroESport.Joueurs\MicroESport.Joueurs.csproj", "{9E5EF96D-B481-4F7E-93DC-F03555F45BBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroESport.Equipe", "MicroESport.Equipe\MicroESport.Equipe.csproj", "{B67A713F-679F-477B-94D0-38AB7881A3DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroESport.Equipes", "MicroESport.Equipes\MicroESport.Equipes.csproj", "{B67A713F-679F-477B-94D0-38AB7881A3DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace MicroESport.Equipe.Domain.Models
+namespace MicroESport.Equipes.Domain.Models
 {
     public class Equipe
     {
