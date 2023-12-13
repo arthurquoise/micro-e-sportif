@@ -17,8 +17,10 @@ namespace MicroESport.Joueurs.Infrastructure.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Joueur>> FindAll()
+        public async Task<IEnumerable<Joueur>> FindAll(string? equipeId)
         {
+            if (equipeId != null)
+                return await _joueurService.FindBySpecification(j => j.EquipeId == equipeId);
             return await _joueurService.FindAll();
         }
 
@@ -34,9 +36,10 @@ namespace MicroESport.Joueurs.Infrastructure.Controllers
             return await _joueurService.Save(joueur);
         }
 
-        [HttpPut]
-        public async Task<Joueur> Update(Joueur joueur)
+        [HttpPut("{id}")]
+        public async Task<Joueur> Update(string id, Joueur joueur)
         {
+            joueur.Id = id;
             return await _joueurService.Update(joueur);
         }
 

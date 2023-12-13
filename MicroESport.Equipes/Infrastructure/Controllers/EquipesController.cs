@@ -1,4 +1,5 @@
-﻿using MicroESport.Equipes.Domain.Models;
+﻿using MicroESport.Equipes.Domain.DTOs;
+using MicroESport.Equipes.Domain.Models;
 using MicroESport.Equipes.Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,25 +18,25 @@ namespace MicroESport.Equipes.Infrastructure.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Equipe>> FindAll()
+        public async Task<IEnumerable<EquipeDTO>> FindAll()
         {
             return await _equipeService.FindAll();
         }
 
         [HttpGet("{id}")]
-        public async Task<Equipe?> FindById(string id)
+        public async Task<EquipeDTO?> FindById(string id)
         {
             return await _equipeService.FindById(id);
         }
 
         [HttpPost]
-        public async Task<Equipe> Save(Equipe equipe)
+        public async Task<EquipeDTO> Save(EquipeDTO equipe)
         {
             return await _equipeService.Save(equipe);
         }
 
         [HttpPut]
-        public async Task<Equipe> Update(Equipe equipe)
+        public async Task<EquipeDTO> Update(EquipeDTO equipe)
         {
             return await _equipeService.Update(equipe);
         }

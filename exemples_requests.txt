@@ -8,3 +8,12 @@
   "pays": "France",
   "equipeId": "string"
 }
+
+{
+  "nom": "dsqfoz",
+  "joueurs": [
+    {
+      "id": "65798d2b0402d773f5b9bbec"
+    }
+  ]
+}

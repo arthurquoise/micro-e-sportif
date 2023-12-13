@@ -27,9 +27,9 @@ namespace MicroESport.Joueurs.Infrastructure.Repositories
             return await _collection.Find(e => e.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Joueur>> FindBySpecification(Func<Joueur, bool> predicate)
+        public async Task<IEnumerable<Joueur>> FindBySpecification(Expression<Func<Joueur, bool>> predicate)
         {
-            return await _collection.Find(e => predicate(e)).ToListAsync();
+            return await _collection.Find(predicate).ToListAsync();
         }
 
         public async Task<Joueur> Save(Joueur joueur)

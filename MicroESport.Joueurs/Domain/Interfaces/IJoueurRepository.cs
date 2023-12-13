@@ -10,6 +10,6 @@ namespace MicroESport.Joueurs.Domain.Interfaces
         Task<bool> Delete(string id);
         Task<Joueur?> FindById(string id);
         Task<IEnumerable<Joueur>> FindAll();
-        Task<IEnumerable<Joueur>> FindBySpecification(Func<Joueur, bool> predicate);
+        Task<IEnumerable<Joueur>> FindBySpecification(Expression<Func<Joueur, bool>> predicate);
     }
 }

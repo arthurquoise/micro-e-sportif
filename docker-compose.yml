@@ -6,7 +6,7 @@ services:
     build:
       context: ./MicroESport.Joueurs
     ports:
-      - "7172:7172"
+      - "7172:80"
     depends_on:
       - mongo
     # environment:
@@ -19,7 +19,7 @@ services:
     build:
       context: ./MicroESport.Equipes
     ports:
-      - "7173:7173"
+      - "7173:80"
     depends_on:
       - mongo
     # environment:
