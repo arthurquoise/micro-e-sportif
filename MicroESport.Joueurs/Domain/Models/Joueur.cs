@@ -7,12 +7,12 @@ namespace MicroESport.Joueurs.Domain.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Pseudo { get; set; }
         public string Poste { get; set; }
-        public DateOnly DateNaissance { get; set; }
+        public DateTime DateNaissance { get; set; }
         public string Pays { get; set; }
         public string EquipeId { get; set; }
     }

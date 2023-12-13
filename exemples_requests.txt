@@ -1,0 +1,10 @@
+{
+  "id": "65798d2b0402d773f5b9bbec",
+  "nom": "V",
+  "prenom": "Nicolas",
+  "pseudo": "NicoGamerXx59",
+  "poste": "jungle",
+  "dateNaissance": "1997-12-13T10:53:27.317Z",
+  "pays": "France",
+  "equipeId": "string"
+}

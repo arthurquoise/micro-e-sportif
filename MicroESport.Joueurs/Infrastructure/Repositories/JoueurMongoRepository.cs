@@ -11,10 +11,10 @@ namespace MicroESport.Joueurs.Infrastructure.Repositories
         private readonly IMongoCollection<Joueur> _collection;
         private readonly IMongoDatabase _database;
 
-        public JoueurMongoRepository(IMongoDatabase database, string mongoCollectionName)
+        public JoueurMongoRepository(IMongoDatabase database)
         {
             _database = database;
-            _collection = _database.GetCollection<Joueur>(mongoCollectionName);
+            _collection = _database.GetCollection<Joueur>("Joueurs");
         }
 
         public async Task<IEnumerable<Joueur>> FindAll()
@@ -42,22 +42,22 @@ namespace MicroESport.Joueurs.Infrastructure.Repositories
         {
             var entityFromDb = await _collection.Find(e => e.Id == joueur.Id).FirstOrDefaultAsync();
             if (entityFromDb == null)
-                throw new Exception("Entity not found");
+                throw new Exception("Joueur not found");
 
             var result = await _collection.ReplaceOneAsync(x => x.Id == joueur.Id, joueur);
             if (result.ModifiedCount != 1)
-                throw new Exception("Entity not updated");
+                throw new Exception("Joueur not updated");
 
             return joueur;
         }
 
-        public async Task<bool> Delete(Joueur joueur)
+        public async Task<bool> Delete(string id)
         {
-            var entityFromDb = await _collection.Find(e => e.Id == joueur.Id).FirstOrDefaultAsync();
+            var entityFromDb = await _collection.Find(e => e.Id == id).FirstOrDefaultAsync();
             if (entityFromDb == null)
-                throw new Exception("Entity not found");
+                throw new Exception("Joueur not found");
 
-            var result = await _collection.DeleteOneAsync(e => e.Id == joueur.Id);
+            var result = await _collection.DeleteOneAsync(e => e.Id == id);
 
             return result.DeletedCount == 1;
         }

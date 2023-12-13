@@ -7,7 +7,7 @@ namespace MicroESport.Joueurs.Domain.Interfaces
     {
         Task<Joueur> Save(Joueur joueur);
         Task<Joueur> Update(Joueur joueur);
-        Task<bool> Delete(Joueur joueur);
+        Task<bool> Delete(string id);
         Task<Joueur?> FindById(string id);
         Task<IEnumerable<Joueur>> FindAll();
         Task<IEnumerable<Joueur>> FindBySpecification(Func<Joueur, bool> predicate);

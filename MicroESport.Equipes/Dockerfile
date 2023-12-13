@@ -5,16 +5,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["MicroESport.Equipe.csproj", ""]
-RUN dotnet restore "MicroESport.Equipe.csproj"
+COPY ["MicroESport.Equipes.csproj", ""]
+RUN dotnet restore "MicroESport.Equipes.csproj"
 COPY . .
-# WORKDIR "/src/MicroESport.Equipe"
-RUN dotnet build "MicroESport.Equipe.csproj" -c Release -o /app/build
+
+RUN dotnet build "MicroESport.Equipes.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MicroESport.Equipe.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "MicroESport.Equipes.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MicroESport.Equipe.dll"]
+ENTRYPOINT ["dotnet", "MicroESport.Equipes.dll"]
